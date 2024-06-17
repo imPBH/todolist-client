@@ -9,6 +9,8 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { LoginComponent } from './components/login/login.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { FormsModule } from '@angular/forms';
+import { RegisterComponent } from './components/register/register.component';
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { FormsModule } from '@angular/forms';
     LandingComponent,
     LandingPageComponent,
     LoginComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    RegisterComponent,
+    RegisterPageComponent
   ],
   imports: [
     BrowserModule,
