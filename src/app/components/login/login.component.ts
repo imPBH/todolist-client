@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,17 +8,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+
   email: string = '';
   password: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit() {
-    if (this.email === 'test@example.com' && this.password === 'password') {
-      alert('Login successful!');
-      this.router.navigate(['/']);
-    } else {
-      alert('Invalid credentials');
-    }
+    this.authService.login(this.email, this.password).subscribe({
+      next: () => {
+        this.router.navigate(['/']);
+      },
+      error: (err) => {
+        alert(`Error: ${err.error.message}`);
+      }
+    });
   }
 }
