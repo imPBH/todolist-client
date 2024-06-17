@@ -12,6 +12,8 @@ import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProfileComponent } from './components/profile/profile.component';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     LoginPageComponent,
     RegisterComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
+    ProfileComponent,
+    ProfilePageComponent
   ],
   imports: [
     BrowserModule,
