@@ -6,6 +6,8 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { TodosPageComponent } from './pages/todos-page/todos-page.component';
 import { AdminTodosPageComponent } from './pages/admin-todos-page/admin-todos-page.component';
+import { AdminGuard } from './guards/admin.guard';
+import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 
 const routes: Routes = [
   {path: '', component: LandingPageComponent},
@@ -13,7 +15,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterPageComponent },
   { path: 'profile', component: ProfilePageComponent },
   { path: 'todos', component: TodosPageComponent },
-  { path: 'admin/todos', component: AdminTodosPageComponent },
+  { path: 'admin/todos', component: AdminTodosPageComponent, canActivate: [AdminGuard] },
+  { path: '**', component: NotFoundPageComponent },
 ];
 
 @NgModule({

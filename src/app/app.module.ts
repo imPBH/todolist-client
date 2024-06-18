@@ -20,6 +20,8 @@ import { TodosPageComponent } from './pages/todos-page/todos-page.component';
 import { AdminTodoComponent } from './components/admin-todo/admin-todo.component';
 import { AdminTodosComponent } from './components/admin-todos/admin-todos.component';
 import { AdminTodosPageComponent } from './pages/admin-todos-page/admin-todos-page.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { AdminTodosPageComponent } from './pages/admin-todos-page/admin-todos-pa
     TodosPageComponent,
     AdminTodoComponent,
     AdminTodosComponent,
-    AdminTodosPageComponent
+    AdminTodosPageComponent,
+    NotFoundComponent,
+    NotFoundPageComponent
   ],
   imports: [
     BrowserModule,
