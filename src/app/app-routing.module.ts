@@ -8,13 +8,14 @@ import { TodosPageComponent } from './pages/todos-page/todos-page.component';
 import { AdminTodosPageComponent } from './pages/admin-todos-page/admin-todos-page.component';
 import { AdminGuard } from './guards/admin.guard';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {path: '', component: LandingPageComponent},
   { path: 'login', component: LoginPageComponent },
   { path: 'register', component: RegisterPageComponent },
-  { path: 'profile', component: ProfilePageComponent },
-  { path: 'todos', component: TodosPageComponent },
+  { path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuard] },
+  { path: 'todos', component: TodosPageComponent, canActivate: [AuthGuard] },
   { path: 'admin/todos', component: AdminTodosPageComponent, canActivate: [AdminGuard] },
   { path: '**', component: NotFoundPageComponent },
 ];

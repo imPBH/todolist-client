@@ -45,4 +45,8 @@ export class AuthService {
     localStorage.removeItem('role');
     this.connectedSource.next(false);
   }
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('connected');
+  }
 }
