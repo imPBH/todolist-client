@@ -17,7 +17,7 @@ export class LoginComponent {
   onSubmit() {
     this.authService.login(this.email, this.password).subscribe({
       next: () => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/todos']);
       },
       error: (err) => {
         alert(`Error: ${err.error.message}`);

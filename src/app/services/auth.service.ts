@@ -1,16 +1,7 @@
+import { LoginResponse } from './../types/LoginResponse';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-
-interface LoginResponse {
-  user: {
-    id: number;
-    name: string;
-    email: string;
-    role: string;
-  };
-  token: string;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +31,7 @@ export class AuthService {
           localStorage.setItem('connected', 'true');
           localStorage.setItem('username', response.user.name);
           localStorage.setItem('userId', response.user.id.toString());
+          localStorage.setItem('role', response.user.role);
           this.connectedSource.next(true);
         })
       );
@@ -50,6 +42,7 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
     localStorage.removeItem('userId');
+    localStorage.removeItem('role');
     this.connectedSource.next(false);
   }
 }

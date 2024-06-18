@@ -14,6 +14,12 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+import { TodosComponent } from './components/todos/todos.component';
+import { TodoComponent } from './components/todo/todo.component';
+import { TodosPageComponent } from './pages/todos-page/todos-page.component';
+import { AdminTodoComponent } from './components/admin-todo/admin-todo.component';
+import { AdminTodosComponent } from './components/admin-todos/admin-todos.component';
+import { AdminTodosPageComponent } from './pages/admin-todos-page/admin-todos-page.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +32,13 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
     RegisterComponent,
     RegisterPageComponent,
     ProfileComponent,
-    ProfilePageComponent
+    ProfilePageComponent,
+    TodosComponent,
+    TodoComponent,
+    TodosPageComponent,
+    AdminTodoComponent,
+    AdminTodosComponent,
+    AdminTodosPageComponent
   ],
   imports: [
     BrowserModule,

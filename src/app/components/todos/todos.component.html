@@ -1,0 +1,10 @@
+<div class="max-w-xl mx-auto">
+  <h2 class="text-2xl font-semibold mb-4">My todos</h2>
+  <form class="flex items-center mb-4" (submit)="addTodo()">
+    <input type="text" [(ngModel)]="newTodoTitle" name="newTodoTitle" placeholder="New todo" class="border rounded px-2 py-1 w-full focus:outline-none focus:ring focus:border-indigo-500">
+    <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-2">Add</button>
+  </form>
+  <div *ngFor="let todo of todos">
+    <app-todo [todo]="todo"></app-todo>
+  </div>
+</div>

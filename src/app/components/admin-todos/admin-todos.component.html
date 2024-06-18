@@ -1,0 +1,6 @@
+<div class="max-w-xl mx-auto">
+  <h2 class="text-2xl font-semibold mb-4">Admin view of all todos</h2>
+  <div *ngFor="let todo of todos">
+    <app-admin-todo [todo]="todo"></app-admin-todo>
+  </div>
+</div>

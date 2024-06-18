@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,7 @@ import { AuthService } from '../../services/auth.service';
 export class HeaderComponent implements OnInit {
   isConnected: boolean = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.authService.isConnected$.subscribe(isConnected => {
@@ -17,7 +18,13 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  isAdmin(): boolean {
+    const role = localStorage.getItem('role');
+    return role === 'admin';
+  }
+
   logout() {
     this.authService.logout();
+    this.router.navigate(['/'])
   }
 }
