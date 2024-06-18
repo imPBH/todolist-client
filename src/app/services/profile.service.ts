@@ -14,6 +14,7 @@ export class ProfileService {
     const url = `${this.apiUrl}/users/${userId}`;
     const body = { name: newName };
     const headers = this.getHeaders();
+    localStorage.setItem('username', newName);
 
     return this.http.patch(url, body, { headers });
   }

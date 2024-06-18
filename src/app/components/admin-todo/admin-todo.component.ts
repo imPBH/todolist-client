@@ -17,14 +17,16 @@ export class AdminTodoComponent {
   toggleDone() {
     this.todoService.updateTodoStatus(this.todo.id, !this.todo.done)
       .subscribe(
-        (response) => {
+      {
+        next: (response) => {
           console.log('Todo status updated successfully:', response);
           this.todo.done = !this.todo.done
         },
-        (error) => {
+        error: (error) => {
           console.error('Failed to update todo status:', error);
         }
-      );
+      }
+    );
   }
 
   editTodo() {
@@ -39,13 +41,15 @@ export class AdminTodoComponent {
   saveTitle() {
     this.todoService.updateTodoTitle(this.todo.id, this.newTitle)
       .subscribe(
-        (response) => {
-          console.log('Todo title updated successfully:', response);
-          this.todo.title = this.newTitle;
-          this.editingTitle = false;
-        },
-        (error) => {
-          console.error('Failed to update todo title:', error);
+        {
+          next: (response) => {
+            console.log('Todo title updated successfully:', response);
+            this.todo.title = this.newTitle;
+            this.editingTitle = false;
+          },
+          error: (error) => {
+            console.error('Failed to update todo title:', error);
+          }
         }
       );
   }
@@ -53,11 +57,13 @@ export class AdminTodoComponent {
   deleteTodo() {
     this.todoService.deleteTodo(this.todo.id)
       .subscribe(
-        () => {
-          console.log('Todo deleted successfully:', this.todo.id);
-        },
-        (error) => {
-          console.error('Failed to delete todo:', error);
+        {
+          next: () => {
+            console.log('Todo deleted successfully:', this.todo.id);
+          },
+          error: (error) => {
+            console.error('Failed to delete todo:', error);
+          }
         }
       );
   }

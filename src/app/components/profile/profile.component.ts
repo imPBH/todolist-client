@@ -48,14 +48,16 @@ export class ProfileComponent implements OnInit {
     }
 
     this.profileService.updateUserName(this.userId, this.newName).subscribe(
-      () => {
-        this.userName = this.newName;
-        this.isEditing = false;
-        this.updateError = '';
-      },
-      error => {
-        console.error('Error:', error);
-        this.updateError = 'Error while updating name.';
+      {
+        next: () => {
+          this.userName = this.newName;
+          this.isEditing = false;
+          this.updateError = '';
+        },
+        error: (error) => {
+          console.error('Error:', error);
+          this.updateError = 'Error while updating name.';
+        }
       }
     );
   }

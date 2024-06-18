@@ -21,11 +21,13 @@ export class TodosComponent implements OnInit {
     const userId = parseInt(localStorage.getItem('userId') || '', 10);
     if (!isNaN(userId)) {
       this.todoService.getTodos(userId).subscribe(
-        (todos) => {
-          this.todos = todos;
-        },
-        (error) => {
-          console.error('Failed to fetch todos:', error);
+        {
+          next: (todos) => {
+            this.todos = todos
+          },
+          error: (error) => {
+            console.error('Failed to fetch todos:', error);
+          }
         }
       );
     } else {
@@ -48,13 +50,15 @@ export class TodosComponent implements OnInit {
     const userId = parseInt(localStorage.getItem('userId') || '', 10);
     if (!isNaN(userId)) {
       this.todoService.createTodo(userId, this.newTodoTitle).subscribe(
-        (newTodo) => {
-          console.log('Todo created successfully:', newTodo);
-          this.todos.push(newTodo);
-          this.newTodoTitle = '';
-        },
-        (error) => {
-          console.error('Failed to create todo:', error);
+        {
+          next: (newTodo) => {
+            console.log('Todo created successfully:', newTodo);
+            this.todos.push(newTodo);
+            this.newTodoTitle = '';
+          },
+          error: (error) => {
+            console.error('Failed to create todo:', error);
+          }
         }
       );
     } else {

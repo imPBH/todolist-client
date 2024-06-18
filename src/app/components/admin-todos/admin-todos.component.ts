@@ -20,11 +20,13 @@ export class AdminTodosComponent {
 
   loadTodos() {
     this.todoService.getAllTodos().subscribe(
-      (todos) => {
-        this.todos = todos;
-       },
-      (error) => {
-        console.error('Failed to fetch todos:', error);
+      {
+        next: (todos) => {
+          this.todos = todos
+        },
+        error: (error) => {
+          console.error('Failed to fetch todos:', error);
+        }
       }
     );
   }
