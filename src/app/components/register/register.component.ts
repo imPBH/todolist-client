@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
@@ -7,21 +8,27 @@ import { Router } from '@angular/router';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
+  registerForm!: FormGroup;
 
-  name: string;
-  email: string;
-  password: string;
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
-  constructor(private authService: AuthService, private router: Router) {
-    this.name = '';
-    this.email = '';
-    this.password = '';
+  ngOnInit(): void {
+    this.registerForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
   }
 
-  onSubmit() {
-    this.authService.registerUser(this.name, this.email, this.password)
-      .subscribe({
+  onSubmit(): void {
+    if (this.registerForm.valid) {
+      const { name, email, password } = this.registerForm.value;
+      this.authService.registerUser(name, email, password).subscribe({
         next: () => {
           this.router.navigate(['/login']);
         },
@@ -29,5 +36,6 @@ export class RegisterComponent {
           alert(`Error: ${err.error.message}`);
         }
       });
+    }
   }
 }

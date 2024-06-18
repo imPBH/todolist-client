@@ -1,7 +1,7 @@
 <div class="flex items-center justify-center bg-gray-100" style="height: calc(100vh - 60px);">
   <div class="w-full max-w-md bg-white rounded-lg shadow-md p-8">
     <h2 class="text-3xl font-semibold text-gray-800 mb-6">Register for <span class="text-indigo-600">Todolist</span></h2>
-    <form (submit)="onSubmit()">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
           Name
@@ -9,12 +9,13 @@
         <input
           type="text"
           id="name"
-          [(ngModel)]="name"
-          name="name"
-          required
+          formControlName="name"
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           placeholder="Enter your name"
         />
+        <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched" class="text-red-500 text-sm">
+          <span *ngIf="registerForm.get('name')?.errors?.['required']">Name is required.</span>
+        </div>
       </div>
       <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
@@ -23,12 +24,14 @@
         <input
           type="email"
           id="email"
-          [(ngModel)]="email"
-          name="email"
-          required
+          formControlName="email"
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           placeholder="Enter your email"
         />
+        <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="text-red-500 text-sm">
+          <span *ngIf="registerForm.get('email')?.errors?.['required']">Email is required.</span>
+          <span *ngIf="registerForm.get('email')?.errors?.['email']">Invalid email address.</span>
+        </div>
       </div>
       <div class="mb-6">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
@@ -37,17 +40,19 @@
         <input
           type="password"
           id="password"
-          [(ngModel)]="password"
-          name="password"
-          required
+          formControlName="password"
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
           placeholder="Enter your password"
         />
+        <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="text-red-500 text-sm">
+          <span *ngIf="registerForm.get('password')?.errors?.['required']">Password is required.</span>
+        </div>
       </div>
       <div class="flex items-center justify-between">
         <button
           type="submit"
           class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          [disabled]="registerForm.invalid"
         >
           Register
         </button>

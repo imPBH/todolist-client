@@ -22,6 +22,7 @@ import { AdminTodosComponent } from './components/admin-todos/admin-todos.compon
 import { AdminTodosPageComponent } from './pages/admin-todos-page/admin-todos-page.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.com
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
